@@ -1,25 +1,25 @@
 {
-  "name": "jade-react-compiler-x",
-  "version": "0.3.2",
-  "description": "Jade compiler for Facebook React",
+  "name": "pug-react-compiler",
+  "version": "0.3.3",
+  "description": "Jade/pug compiler for React",
   "authors": [
     "Michael Phan-Ba <michael@mikepb.com>"
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/wujunhong/jade-react-compiler-x"
+    "url": "git://github.com/wujunhong/pug-react-compiler"
   },
   "main": "index.js",
   "bin": {
-    "jade-react-compiler": "./bin/jade-react-compiler.js"
+    "pug-react-compiler": "./bin/pug-react-compiler.js"
   },
   "dependencies": {
     "character-parser": "^1.2.2",
-    "escodegen": "^1.6.1",
-    "esprima": "^2.2.0",
-    "jade": "^1.9.2",
-    "react": "^0.13.3",
-    "uglify-js": "^2.4.21"
+    "escodegen": "^1.8.0",
+    "esprima": "^2.7.0",
+    "pug-parser": "^2.0.0",
+    "pug-lexer": "^2.0.0",
+    "react": "^15.0.0"
   },
   "devDependencies": {
     "js-beautify": "*",

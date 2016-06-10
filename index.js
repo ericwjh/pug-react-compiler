@@ -24,14 +24,15 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-var Parser = require('jade').Parser;
+var parse = require('pug-parser');
+var lex = require('pug-lexer');
 var Compiler = require('./lib/compiler');
 
 /**
  * Jade React compiler version.
  */
 
-exports.version = '0.3.0';
+exports.version = require('./package.json').version;
 
 /**
  * Jade filters.
@@ -47,8 +48,8 @@ exports.filters = {};
  * @api public
  */
 
-exports.compile = function (str, options){
-  return eval(getCompiler(str, options).compile());
+exports.compile = function(str, options) {
+	return eval(getCompiler(str, options).compile());
 };
 
 /**
@@ -59,8 +60,8 @@ exports.compile = function (str, options){
  * @api public
  */
 
-exports.compileClient = function (str, options){
-  return getCompiler(str, options).compile();
+exports.compileClient = function(str, options) {
+	return getCompiler(str, options).compile();
 };
 
 /**
@@ -71,14 +72,10 @@ exports.compileClient = function (str, options){
  * @api private
  */
 
-function getCompiler (str, options) {
-  if (!options) options = {};
-  str = str.toString('utf8');
-
-  // Parse
-  var parser = new Parser(str, options.filename, options);
-  var tokens = parser.parse();
-
-  // Compile
-  return new Compiler(tokens, options);
+function getCompiler(str, options) {
+	if (!options) options = {};
+	str = str.toString('utf8');
+	var tokens = lex(str, options)
+	var node = parse(tokens, options);
+	return new Compiler(node, options);
 }
