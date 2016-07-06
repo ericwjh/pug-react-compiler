@@ -1,6 +1,6 @@
 {
   "name": "pug-react-compiler",
-  "version": "0.3.3",
+  "version": "1.0.0",
   "description": "Jade/pug compiler for React",
   "authors": [
     "Michael Phan-Ba <michael@mikepb.com>"
@@ -18,8 +18,7 @@
     "escodegen": "^1.8.0",
     "esprima": "^2.7.0",
     "pug-parser": "^2.0.0",
-    "pug-lexer": "^2.0.0",
-    "react": "^15.0.0"
+    "pug-lexer": "^2.0.0"
   },
   "devDependencies": {
     "js-beautify": "*",
