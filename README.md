@@ -1,14 +1,14 @@
-# Jade React Compiler
+# pug React Compiler
 
 Use it in your favourite packaging tool.
 
 ```js
 var React = require('react');
-var jact = require('jade-react-compiler');
+var pact = require('pug-react-compiler');
 
 // Compile to code
 
-var js = jact.compileClient('p foobar');
+var js = pact.compileClient('p foobar');
 
 /* Output:
 module.exports = function () {
@@ -18,7 +18,7 @@ module.exports = function () {
 
 // Compile to function
 
-var fn = jact.compile('p foobar');
+var fn = pact.compile('p foobar');
 var Component = React.createClass({ render: fn });
 var markup = React.renderComponentToStaticMarkup(new Component());
 
@@ -48,8 +48,8 @@ then `require()` them as usual.
 There is a special case for using `require` that will hoist the
 declaration to the top of the generated CommonJS module:
 
-Jade:
-```jade
+pug:
+```pug
 - const MyComponent = require('components/my-component')
 div
   if MyComponent
@@ -70,7 +70,7 @@ module.exports = function() {
 Example using the command line tool:
 
 ```bash
-$ ./bin/jade-react-compiler.js -cP <<EOL
+$ ./bin/pug-react-compiler.js -cP <<EOL
 > - const MyComponent = require('components/my-component')
 > div
 >   if MyComponent
@@ -86,7 +86,7 @@ module.exports = function() {
 ```
 
 
-## Differences from Jade
+## Differences from pug
 
 React considers values of `false` to be empty, so they won't be rendered.
 
@@ -96,7 +96,7 @@ a `<span>`.
 
 ## Implementation details
 
-1.  Use Jade to parse the input to Jade AST.
+1.  Use pug to parse the input to pug AST.
 2.  Compile the AST to an intermediate JavaScript format.
 3.  Parse the intermediate JavaScript to
     [SpiderMonkey AST][spidermonkey_ast] using [Esprima][esprima].

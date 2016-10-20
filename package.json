@@ -1,13 +1,14 @@
 {
   "name": "pug-react-compiler",
   "version": "1.0.0",
-  "description": "Jade/pug compiler for React",
+  "description": "Jade/Pug compiler for React",
   "authors": [
     "Michael Phan-Ba <michael@mikepb.com>"
+    "erikwoo <wu-junhong@qq.com>"
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/wujunhong/pug-react-compiler"
+    "url": "git://github.com/erikwoo/pug-react-compiler"
   },
   "main": "index.js",
   "bin": {

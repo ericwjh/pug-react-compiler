@@ -40,11 +40,11 @@ var fs = require('fs')
   , join = path.join
   , monocle = require('monocle')()
   , mkdirp = require('mkdirp')
-  , jade = require('../');
+  , pug = require('../');
 
 global.React = require('react');
 
-// jade options
+// pug options
 
 var options = {};
 
@@ -64,20 +64,20 @@ program
 program.on('--help', function(){
   console.log('  Examples:');
   console.log('');
-  console.log('    # translate jade the templates dir');
-  console.log('    $ jade templates');
+  console.log('    # translate pug the templates dir');
+  console.log('    $ pug templates');
   console.log('');
   console.log('    # create {foo,bar}.js');
-  console.log('    $ jade {foo,bar}.jade');
+  console.log('    $ pug {foo,bar}.pug');
   console.log('');
-  console.log('    # jade over stdio');
-  console.log('    $ jade < my.jade > my.js');
+  console.log('    # pug over stdio');
+  console.log('    $ pug < my.pug > my.js');
   console.log('');
-  console.log('    # jade over stdio');
-  console.log('    $ echo \'h1 Jade!\' | jade');
+  console.log('    # pug over stdio');
+  console.log('    $ echo \'h1 pug!\' | pug');
   console.log('');
   console.log('    # foo, bar dirs rendering to /tmp');
-  console.log('    $ jade foo bar --out /tmp ');
+  console.log('    $ pug foo bar --out /tmp ');
   console.log('');
 });
 
@@ -149,9 +149,9 @@ function stdin() {
   process.stdin.on('end', function(){
     var output;
     if (options.client) {
-      output = jade.compileClient(buf, options);
+      output = pug.compileClient(buf, options);
     } else {
-      var fn = jade.compile(buf, options);
+      var fn = pug.compile(buf, options);
       output = React.renderComponentToStaticMarkup(fn(options));
     }
     process.stdout.write(output);
@@ -166,20 +166,20 @@ function stdin() {
 }
 
 /**
- * Process the given path, compiling the jade files found.
+ * Process the given path, compiling the pug files found.
  * Always walk the subdirectories.
  */
 
 function renderFile(path) {
-  var re = /\.jade$/;
+  var re = /\.pug$/;
   fs.lstat(path, function(err, stat) {
     if (err) throw err;
-    // Found jade file
+    // Found pug file
     if (stat.isFile() && re.test(path)) {
       fs.readFile(path, 'utf8', function(err, str){
         if (err) throw err;
         options.filename = path;
-        var output = jade.compileClient(str, options);
+        var output = pug.compileClient(str, options);
         var extname = '.js';
         path = path.replace(re, extname);
         if (program.out) path = join(program.out, basename(path));
