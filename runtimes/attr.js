@@ -1,3 +1,4 @@
+var __class = require('./class')
 module.exports = function() {
   var classes = [];
   var attrs = {};
@@ -27,6 +28,6 @@ module.exports = function() {
       attrs[key] = val;
     }
   });
-  if (classes.length) attrs.className = ǃclass＿.apply(null, classes);
+  if (classes.length) attrs.className = __class.apply(null, classes);
   return attrs;
 }
